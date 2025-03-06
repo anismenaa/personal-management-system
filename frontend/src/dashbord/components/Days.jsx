@@ -30,7 +30,7 @@ const DaysTable = () => {
 
         fetchData();
 
-    })
+    }, days)
 
     const handleAddJournee = () => {
         setIsLoading(true);
@@ -56,8 +56,8 @@ const DaysTable = () => {
     }
 
     return (
-        <div className="static">
-            {!addClicked && <div className=" h-screen">
+        <div className="static h-full">
+            {!addClicked && <div>
                 <div className="overflow-x-auto h-4/6 overflow-auto shadow-xl">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50">

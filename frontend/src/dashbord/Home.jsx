@@ -7,7 +7,7 @@ import DaysTable from "./components/Days.jsx";
 import Subscriptions from "./components/Subscriptions.jsx";
 
 const Home = () => {
-    const [pageKey, setPageKey] = useState("2");
+    const [pageKey, setPageKey] = useState("1");
 
     return (
         <div>

@@ -40,8 +40,13 @@ const Login = () => {
         <main className="flex ">
             <section className="w-1/3 h-screen bg-[#1C3144] text-white">
                 <div className="flex flex-col gap-10 w-100 mx-auto h-screen justify-around">
-                    <div className="text-center font-extrabold text-7xl">
-                        Nani
+                    <div>
+                        <div className="text-center font-extrabold text-9xl">
+                            NA
+                        </div>
+                        <div className="text-center font-extrabold text-9xl">
+                            NI
+                        </div>
                     </div>
                     <button className="bg-[#FFBA08] w-30 mx-auto rounded-full py-2 font-bold">Signup</button>
                 </div>
