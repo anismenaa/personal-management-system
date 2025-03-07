@@ -5,6 +5,7 @@ import Sidebar from "./components/SideBar.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import DaysTable from "./components/Days.jsx";
 import Subscriptions from "./components/Subscriptions.jsx";
+import Invoices from "./components/invoice/Invoice.jsx";
 
 const Home = () => {
     const [pageKey, setPageKey] = useState("1");
@@ -19,6 +20,7 @@ const Home = () => {
                         pageKey === "1" ? <Dashboard />
                             : pageKey === "2" ? <DaysTable />
                             : pageKey === "3" ? <Subscriptions />
+                            : pageKey === "4" ? <Invoices />
                             : null
                     }
                 </div>

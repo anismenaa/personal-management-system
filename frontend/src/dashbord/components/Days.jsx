@@ -3,7 +3,7 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 
 const DaysTable = () => {
-    const [days, setDays] = useState([{}]);
+    const [days, setDays] = useState([]);
     const [addClicked, setAddClicked] = useState(false);
     const [date, setDate] = useState(Date());
     const [begin, setBegin] = useState("");
@@ -21,8 +21,14 @@ const DaysTable = () => {
         const fetchData = async () => {
             try {
                 const result = await axios.get('http://localhost:3000/journee')
+                const data = result.data.journees
+                data.sort((a, b) => {
 
-                setDays(result.data.journees);
+                    console.log(a.date - b.date)
+                    return new Date(a.date) - new Date(b.date);
+                })
+                console.log(data)
+                setDays(data);
             } catch (error) {
                 console.log(error);
             }
@@ -30,7 +36,7 @@ const DaysTable = () => {
 
         fetchData();
 
-    }, days)
+    }, [])
 
     const handleAddJournee = () => {
         setIsLoading(true);
@@ -102,13 +108,13 @@ const DaysTable = () => {
                                         {day.paied? "✅": "❌"}
                                     </th>
                                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                        {day.date}
+                                        {new Date(day.date).toLocaleDateString('fr-FR')}
                                     </th>
                                     <td className="px-6 py-4">
-                                        {day.begin}
+                                        {new Date(day.begin).getHours()+":"+new Date(day.begin).getMinutes()}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {day.end}
+                                        {new Date(day.end).getHours()+":"+new Date(day.end).getMinutes()}
                                     </td>
                                     <td className="px-6 py-4">
                                         {day.nb_hours}

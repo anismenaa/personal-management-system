@@ -7,6 +7,7 @@ const authRoute = require('./routes/auth');
 const journeeRoute = require('./routes/journee');
 const subscriptionRoute = require('./routes/subscription');
 const statisticsRoute = require('./routes/statistics');
+const invoicesRoute = require('./routes/invoice');
 
 
 // connection to database
@@ -24,6 +25,7 @@ app.use('/auth', authRoute)
 app.use('/journee', journeeRoute)
 app.use('/subscriptions', subscriptionRoute)
 app.use('/statistics', statisticsRoute)
+app.use('/invoices', invoicesRoute)
 
 
 app.listen(port, () => {
