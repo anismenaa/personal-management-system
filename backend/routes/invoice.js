@@ -5,7 +5,8 @@ router.get('/getJournees', async (req, res) => {
     const { beginDate, endDate } = req.query
 
     // now we will return all the unpaied journees that are between begindate and endDate
-    const journeesUnpaied = await Journee.find().where('paied').equals('false').where('date').gte(beginDate).lte(endDate)
+    const journeesUnpaied = await Journee.find().where('paied').equals('false').where('date').gte(beginDate).lte(endDate).sort({date:'asc'})
+
 
     // calculate the total of the unpaied
     let totalImpaied = 0

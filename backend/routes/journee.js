@@ -48,6 +48,14 @@ router.get('/', async (req, res) => {
     })
 })
 
-
+router.put('/:id', async (req, res) => {
+    const id = req.params.id
+    const journeePaiedChanged = await Journee.updateOne({_id: id}, [ { $set: { paied: { $not: "$paied" } } } ])
+    if (journeePaiedChanged) {
+        return res.status(200).json({
+            message: "success: journee paied field updated",
+        })
+    }
+})
 
 module.exports = router

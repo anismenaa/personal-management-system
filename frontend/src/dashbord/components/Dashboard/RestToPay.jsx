@@ -3,19 +3,21 @@ import axios from "axios";
 
 
 
-const Revenues = () => {
-    const [revenues, setRevenues] = React.useState(0);
+
+
+const RestToPay = () => {
+    const [rest, setRest] = React.useState(0);
     const [month, setMonth] = React.useState(new Date().getMonth());
 
 
     useEffect(() => {
-        const getRevenues = async () => {
-            const result = await axios.get(`http://localhost:3000/statistics/totalpermonth/${month}`)
-            setRevenues(result.data.totalpermonth);
+        const getRest = async () => {
+            const result = await axios.get(`http://localhost:3000/statistics/restpermonth/${month}`)
+            setRest(result.data.restpermonth);
         }
 
-        getRevenues()
-    }, [month, revenues])
+        getRest()
+    }, [month, rest])
 
     return (
         <div className="outline w-80 h-full text-white flex flex-col items-center justify-center p-5 mt-10 bg-[#1C3144]">
@@ -23,7 +25,7 @@ const Revenues = () => {
                 console.log(e.target.value);
                 setMonth(e.target.value)
             }}
-            className="text-center">
+                    className="text-center">
                 <option selected disabled>please select your month:</option>
                 <option value={0}>January</option>
                 <option value={1}>February</option>
@@ -34,13 +36,13 @@ const Revenues = () => {
                 <option value={6}>July</option>
                 <option value={7}>August</option>
             </select>
-            <div className="text-2xl font-bold">Paied : <span className="italic">{new Date(2025, month).toLocaleString("en-US", {month:'long'})}</span></div>
+            <div className="text-2xl font-bold">Impaied : <span className="italic">{new Date(2025, month).toLocaleString("en-US", {month:'long'})}</span></div>
             <div className="flex-grow flex items-center justify-center">
-                <div className="text-2xl font-extrabold text-green-500">{revenues} €</div>
+                <div className="text-2xl font-extrabold text-red-500">{rest} €</div>
             </div>
         </div>
     )
 }
 
 
-export default Revenues;
+export default RestToPay

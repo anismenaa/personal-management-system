@@ -14,6 +14,7 @@ const DaysTable = () => {
     const [number_commission, setNumber_commission] = useState(0);
     const [checked, setChecked] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [changePaied, setChangePaied] = useState(false);
 
 
     useEffect( () => {
@@ -25,7 +26,7 @@ const DaysTable = () => {
                 data.sort((a, b) => {
 
                     console.log(a.date - b.date)
-                    return new Date(a.date) - new Date(b.date);
+                    return new Date(b.date) - new Date(a.date);
                 })
                 console.log(data)
                 setDays(data);
@@ -36,7 +37,7 @@ const DaysTable = () => {
 
         fetchData();
 
-    }, [])
+    }, [changePaied, days])
 
     const handleAddJournee = () => {
         setIsLoading(true);
@@ -61,10 +62,18 @@ const DaysTable = () => {
         }, 3000)
     }
 
+    // this action turn the journée into paied or unpaied
+
+    const ChangeToPaiedUnpaied = async(id) => {
+        console.log(id)
+        const paiedStateChange = await axios.put(`http://localhost:3000/journee/${id}`)
+        setChangePaied(!changePaied)
+    }
+
     return (
-        <div className="static h-full">
-            {!addClicked && <div>
-                <div className="overflow-x-auto h-4/6 overflow-auto shadow-xl">
+        <div className="static h-screen">
+            {!addClicked && <div className="h-screen">
+                <div className="outline h-4/6 overflow-scroll shadow-xl">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -103,8 +112,8 @@ const DaysTable = () => {
                         <tbody>
                         {
                             days.map(day => (
-                                <tr className="bg-white border-b border-gray-200">
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                <tr className="bg-white border-b border-gray-200" key={day._id}>
+                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap cursor-pointer " onClick={()=>ChangeToPaiedUnpaied(day._id)}>
                                         {day.paied? "✅": "❌"}
                                     </th>
                                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
