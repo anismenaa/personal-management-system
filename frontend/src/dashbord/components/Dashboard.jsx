@@ -20,6 +20,8 @@ const Dashboard = () => {
                 <Rest />
                 <DepenseSub />
             </div>
+            <div>
+            </div>
         </div>
     )
 }
