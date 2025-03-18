@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/SideBar.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import DaysTable from "./components/Days.jsx";
